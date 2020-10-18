@@ -1,1 +1,76 @@
-<p>cadastro-pessoa-form works!</p>
+<form [formGroup]="pessoaForm" class="form">
+
+  <div class="row">
+    <div class="col">
+      <mat-form-field appearance="outline" color="primary" class="field-width">
+        <mat-label>Nome</mat-label>
+        <input type="text" matInput placeholder="Nome" formControlName="nome">
+        <mat-error *ngIf="!nome.invalid && (nome.dirty || nome.touched)">
+            Nome Obrigatório!
+        </mat-error>
+        <mat-error *ngIf="nome.hasError('minlength') && (nome.dirty || nome.touched)">
+          Nome deve ter ao menos 2 caracteres!
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col">
+      <mat-form-field appearance="outline" color="primary" class="field-width">
+        <mat-label>CPF</mat-label>
+        <input type="text" matInput placeholder="CPF" formControlName="cpf" mask="000.000.000-00">
+        <mat-error *ngIf="cpf.invalid  && (cpf.dirty || cpf.touched)">
+            CPF Inválido!
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col">
+      <mat-form-field appearance="outline" color="primary" class="field-width">
+        <mat-label>Data de Nascimento</mat-label>
+        <input type="date" matInput placeholder="Data de Nascimento" formControlName="dataNascimento">
+        <mat-error *ngIf="dataNascimento.invalid && (dataNascimento.dirty || dataNascimento.touched)">
+            Data de Nascimento Inválida!
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <mat-form-field appearance="outline" color="primary" class="field-width">
+        <mat-label>Sexo</mat-label>
+        <input type="text" matInput placeholder="Sexo" formControlName="sexo">
+      </mat-form-field>
+    </div>
+    <div class="col">
+      <mat-form-field appearance="outline" color="primary" class="field-width">
+        <mat-label>E-mail</mat-label>
+        <input type="email" matInput placeholder="E-mail" formControlName="email">
+        <mat-error *ngIf="email.hasError('email') && (email.dirty || email.touched)">
+          E-mail Inválido!
+      </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col">
+      <mat-form-field appearance="outline" color="primary" class="field-width">
+        <mat-label>Naturalidade</mat-label>
+        <input type="text" matInput placeholder="Naturalidade" formControlName="naturalidade">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <mat-form-field appearance="outline" color="primary" class="field-width">
+        <mat-label>Nacionalidade</mat-label>
+        <input type="text" matInput placeholder="Nacionalidade" formControlName="nacionalidade">
+      </mat-form-field>
+    </div>
+    <div class="col"></div>
+    <div class="col"></div>
+  </div>
+
+  <div align="end">
+    <button mat-button color="primary" (click)="salvar()" [disabled]="pessoaForm.invalid" >Salvar</button>
+    <button routerLink="/pessoas" mat-button color="warn">Cancelar</button>
+  </div>
+
+</form>

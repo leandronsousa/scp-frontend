@@ -1,16 +1,17 @@
+import { HomeComponent } from './funcionalidades/home/home.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: '', redirectTo: '/pessoas'
-  },
-  {
-    path: 'pessoas',
-    loadChildren: () => import('./funcionalidades/cadastro-pessoa/cadastro-pessoa.module').then(mod => mod.CadastroPessoaModule)
-  },
-  {
-    path: '**', redirectTo: '/pessoas'
+    path: '',
+    component: HomeComponent,
+    children: [
+      {
+        path: 'pessoas',
+        loadChildren: () => import('./funcionalidades/cadastro-pessoa/cadastro-pessoa.module').then(mod => mod.CadastroPessoaModule)
+      }
+    ]
   }
 ];
 

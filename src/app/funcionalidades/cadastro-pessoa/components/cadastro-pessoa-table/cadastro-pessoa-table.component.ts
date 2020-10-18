@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Pessoa } from '../../models/pessoa.model';
 
 @Component({
@@ -10,6 +10,10 @@ export class CadastroPessoaTableComponent implements OnInit {
 
   @Input() pessoas: Pessoa[];
 
+  @Output() visualizarPessoa: EventEmitter<string> = new EventEmitter();
+
+  @Output() excluirPessoa: EventEmitter<string> = new EventEmitter();
+
   colunas = ['nome', 'sexo', 'dataNascimento', 'cpf', 'acoes'];
 
   constructor() { }
@@ -17,12 +21,12 @@ export class CadastroPessoaTableComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  visualizar(url: string): void {
-
+  visualizar(url: any): void {
+    this.visualizarPessoa.emit(url.href);
   }
 
-  excluir(): void {
-
+  excluir(url: any): void {
+    this.excluirPessoa.emit(url.href);
   }
 
 }
