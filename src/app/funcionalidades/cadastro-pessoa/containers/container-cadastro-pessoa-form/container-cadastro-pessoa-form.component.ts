@@ -1,10 +1,10 @@
-import { SnackbarService } from './../../../../shared/notifications/snackbar/service/snackbar.service';
 import { PessoaService } from './../../services/pessoa.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Pessoa } from '../../models/pessoa.model';
 import { takeUntil } from 'rxjs/operators';
-import { ActivatedRoute, Router } from '@angular/router';
+import {  Router } from '@angular/router';
+import { SnackbarService } from 'src/app/shared/notifications/snackbar/snackbar.service';
 
 @Component({
   selector: 'app-container-cadastro-pessoa-form',
@@ -19,11 +19,12 @@ export class ContainerCadastroPessoaFormComponent implements OnInit, OnDestroy {
 
   constructor(private pessoaService: PessoaService,
               private router: Router,
-              private snackbarService: SnackbarService,
-              private route: ActivatedRoute) { }
+              private snackbarService: SnackbarService) { }
 
   ngOnInit(): void {
-    this.pessoa$ = this.pessoaService.recuperarPessoa(history.state.link);
+    if (history.state.link) {
+      this.pessoa$ = this.pessoaService.recuperarPessoa(history.state.link);
+    }
   }
 
   ngOnDestroy(): void {

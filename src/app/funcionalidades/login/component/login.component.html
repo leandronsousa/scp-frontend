@@ -1,0 +1,38 @@
+<html>
+  <body class="body">
+    <div class="div-login">
+      <mat-card class="card">
+        <form [formGroup]="loginForm" novalidate class="form">
+
+          <mat-card-header>
+            <mat-card-title>Login</mat-card-title>
+          </mat-card-header>
+
+          <mat-card-content>
+            <div class="row">
+              <div class="col">
+                <mat-form-field appearance="outline"  class="full-width" color="primary">
+                  <mat-label>Login</mat-label>
+                  <input type="text" matInput placeholder="Login" formControlName="login">
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                  <mat-form-field appearance="outline" class="full-width" color="primary">
+                    <mat-label>Senha</mat-label>
+                    <input type="password" matInput placeholder="Senha" formControlName="password" (keyup.enter)="login()">
+                  </mat-form-field>
+              </div>
+            </div>
+          </mat-card-content>
+
+          <mat-card-actions align="end">
+            <button (click)="login()" mat-button>Entrar</button>
+          </mat-card-actions>
+
+          </form>
+      </mat-card>
+    </div>
+  </body>
+</html>

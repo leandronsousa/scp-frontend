@@ -1,6 +1,6 @@
 import { PessoaResponse } from './../models/api-response-pessoa.model';
 import { API } from './../../../shared/api';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
@@ -34,6 +34,18 @@ export class PessoaService {
 
   excluirPessoa(url: string): Observable<any> {
     return this.http.delete(`${url}`);
+  }
+
+  private getHeader(): any {
+    const username = 'leandro';
+    const password = '123456';
+    const opt =  {
+      headers: new HttpHeaders ({
+          'Content-type': 'application/json',
+          Authorization: 'Basic ' + btoa(username + ':' + password)
+      })
+    };
+    return opt;
   }
 
 }

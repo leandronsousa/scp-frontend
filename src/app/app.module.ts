@@ -1,3 +1,4 @@
+import { LoginModule } from './funcionalidades/login/login.module';
 import { MaterialModule } from './shared/modules/material.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
@@ -12,14 +13,15 @@ import { ScpErrorHandler } from './shared/handlers/error-handler';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MaterialModule
+    MaterialModule,
+    LoginModule
   ],
   providers: [
     {provide: ErrorHandler, useClass: ScpErrorHandler}

@@ -1,0 +1,55 @@
+html, body {
+  height: 100%;
+  width: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background: #eee;
+}
+
+.div-login {
+  display: flex;
+  justify-content: center;
+  margin: 10% auto;
+}
+
+.error {
+  padding: 16px;
+  width: 300px;
+  color: white;
+  background-color: red;
+}
+
+.form {
+width: 100%;
+}
+
+.card {
+min-width: 30%;
+max-width: 100%;
+}
+
+mat-form-field {
+  width: 100%
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.col {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.full-width {
+width: 100%;
+}
+
+.is-mobile .toolbar {
+position: fixed;
+/* Make sure the toolbar will stay on top of the content as it scrolls past. */
+z-index: 2;
+}
