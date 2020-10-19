@@ -1,11 +1,14 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorHandler, NgZone, Injectable } from '@angular/core';
+import { AuthService } from 'src/app/security/authentication/auth.service';
 import { SnackbarService } from '../notifications/snackbar/snackbar.service';
 
 @Injectable()
 export class ScpErrorHandler extends ErrorHandler {
 
-  constructor(private snackbarService: SnackbarService, private zone: NgZone) {
+  constructor(private snackbarService: SnackbarService,
+              private zone: NgZone,
+              private authService: AuthService) {
     super();
   }
 
@@ -13,13 +16,19 @@ export class ScpErrorHandler extends ErrorHandler {
 
     if (error instanceof HttpErrorResponse) {
       this.zone.run(() => {
-        this.snackbarService.exibirNotificaoErro(error.message);
+        if (error.status === 401) {
+          this.snackbarService.exibirNotificaoErro(error.error);
+          this.authService.logout();
+        } else {
+          const msg = error.error || error.error.message;
+          if (msg) {
+            this.snackbarService.exibirNotificaoErro(msg);
+          }
+        }
       });
     } else {
         // Client Error
     }
-
-    console.error(error);
 
     super.handleError(error);
   }

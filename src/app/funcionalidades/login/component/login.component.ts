@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
         take(1)
       ).subscribe(
         data => {
-          this.router.navigate([this.returnUrl]);
+          this.router.navigate(['/pessoas']);
         }
       );
   }
