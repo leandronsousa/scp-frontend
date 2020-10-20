@@ -1,0 +1,21 @@
+version: '19'
+services:
+  scp-backend:
+    build:
+      image: leandronsousa/scp-backend
+      container_name: scp-backend
+      ports:
+        - "8080:8080"
+      # networks:
+      #   - scp-network
+  scp-frontend:
+    build:
+      image: leandronsousa/scp-frontend
+      container_name: scp-frontend
+      ports:
+        - "4200:80"
+
+
+# networks:
+#   scp-network:
+#     driver: bridge

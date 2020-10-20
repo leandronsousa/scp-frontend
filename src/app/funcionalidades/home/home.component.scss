@@ -24,3 +24,12 @@
 .toolbar-button {
   width: 100%;
 }
+
+.button-row {
+  display: table-cell;
+  width: 490px;
+}
+
+.button-row .mat-button-base {
+  margin: 8px 8px 8px 0;
+}

@@ -1,3 +1,4 @@
+import { PageNotFoundComponent } from './funcionalidades/page-not-found/page-not-found.component';
 import { HomeComponent } from './funcionalidades/home/home.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -15,6 +16,10 @@ const routes: Routes = [
         loadChildren: () => import('./funcionalidades/cadastro-pessoa/cadastro-pessoa.module').then(mod => mod.CadastroPessoaModule)
       }
     ]
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent
   }
 ];
 

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Pessoa } from '../../models/pessoa.model';
 import { Router } from '@angular/router';
 import { finalize, take } from 'rxjs/operators';
+import { SnackbarService } from 'src/app/shared/notifications/snackbar/snackbar.service';
 
 @Component({
   selector: 'app-container-cadastro-pessoa-list',
@@ -15,7 +16,8 @@ export class ContainerCadastroPessoaListComponent implements OnInit {
   pessoas$: Observable<Pessoa[]>;
 
   constructor(private pessoaService: PessoaService,
-              private router: Router) { }
+              private router: Router,
+              private snackbarService: SnackbarService) { }
 
   ngOnInit(): void {
     this.consultarPessoas();
@@ -35,7 +37,11 @@ export class ContainerCadastroPessoaListComponent implements OnInit {
       this.pessoaService.excluirPessoa(url).pipe(
         take(1),
         finalize(() => this.consultarPessoas())
-      ).subscribe();
+      ).subscribe(
+        data => {
+          this.snackbarService.exibirNotificaoSucesso('Pessoa excluída com sucesso!');
+        }
+      );
     }
   }
 
